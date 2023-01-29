@@ -1,29 +1,29 @@
 package com.codurance.training.tasks;
 
+import com.codurance.training.tasks.customClass.*;
+
 public final class Task {
-    private final long id;
-    private final String description;
-    private boolean done;
+    private final TaskUnit taskUnit;
+    private TaskDone taskDone;
 
-    public Task(long id, String description, boolean done) {
-        this.id = id;
-        this.description = description;
-        this.done = done;
+    public Task(TaskUnit taskUnit, TaskDone taskDone) {
+        this.taskUnit = taskUnit;
+        this.taskDone = taskDone;
     }
 
-    public long getId() {
-        return id;
-    }
+    // public long getId() {
+    //     return id;
+    // }
 
-    public String getDescription() {
-        return description;
-    }
+    // public String getDescription() {
+    //     return description;
+    // }
 
-    public boolean isDone() {
-        return done;
-    }
+    // public boolean isDone() {
+    //     return this.taskDone;
+    // }
 
-    public void setDone(boolean done) {
-        this.done = done;
-    }
+    // public void setDone(boolean done) {
+    //     this.done = done;
+    // }
 }

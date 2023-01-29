@@ -9,66 +9,26 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class TaskList implements Runnable {
+import com.codurance.training.tasks.customClass.TaskListRunnableUtils;
+import com.codurance.training.tasks.customClass.TaskListUnit;
+
+public final class TaskList {
     private static final String QUIT = "quit";
 
-    private final Map<String, List<Task>> tasks = new LinkedHashMap<>();
-    private final BufferedReader in;
-    private final PrintWriter out;
+    private TaskListUnit taskListUnit;
+    private TaskListRunnableUtils taskListRunnableUtils;
 
-    private long lastId = 0;
 
     public static void main(String[] args) throws Exception {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        PrintWriter out = new PrintWriter(System.out);
-        new TaskList(in, out).run();
+        TaskListRunnableUtils taskListRunnableUtils = new TaskListRunnableUtils();
+        TaskListUnit taskListUnit = new TaskListUnit();
+        new TaskList(taskListRunnableUtils, taskListUnit).run();
+
     }
 
-    public TaskList(BufferedReader reader, PrintWriter writer) {
-        this.in = reader;
-        this.out = writer;
-    }
-
-    public void run() {
-        while (true) {
-            out.print("> ");
-            out.flush();
-            String command;
-            try {
-                command = in.readLine();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            if (command.equals(QUIT)) {
-                break;
-            }
-            execute(command);
-        }
-    }
-
-    private void execute(String commandLine) {
-        String[] commandRest = commandLine.split(" ", 2);
-        String command = commandRest[0];
-        switch (command) {
-            case "show":
-                show();
-                break;
-            case "add":
-                add(commandRest[1]);
-                break;
-            case "check":
-                check(commandRest[1]);
-                break;
-            case "uncheck":
-                uncheck(commandRest[1]);
-                break;
-            case "help":
-                help();
-                break;
-            default:
-                error(command);
-                break;
-        }
+    public TaskList(TaskListRunnableUtils taskListRunnableUtils, TaskListUnit taskListUnit) {
+        this.taskListRunnableUtils = taskListRunnableUtils;
+        this.taskListUnit = taskListUnit;
     }
 
     private void show() {
