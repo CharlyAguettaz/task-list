@@ -32,6 +32,10 @@ public class main {
 
         System.out.println(input);
         
+        // je n'ai pas reussi à ecouter directement le sys out pour faire les command
+        // aussi ma command check ne marche pas jusqu'au bout 
+        // toutes les autres fonctionnent 
+        
     }
 
     
