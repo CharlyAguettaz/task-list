@@ -7,7 +7,7 @@ public class TaskDescription {
         this.taskDescription = taskDescription;
     }
 
-    public String getTaskDescription() {
+    public String toString() {
         return this.taskDescription;
     }
 }

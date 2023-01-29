@@ -1,28 +1,34 @@
 package com.codurance.training.tasks.customClass;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class AddCommand {
+    private AddCommandType addCommandType;
 
-    private List<String> expectedTypes = Arrays.asList("project", "task");
-    private String addCommandValue;
-
-    public AddCommand(String addCommandValue) {
-        this.addCommandValue = addCommandValue;
+    public AddCommand(AddCommandType addCommandType) {
+        this.addCommandType = addCommandType;
     }
 
-    public boolean isNotExpectedCommand() {
-        return this.expectedTypes.contains(this.addCommandValue);
+    public AddCommandLine addCommandArgumentCreate(String argumentString) {
+        if (this.addCommandType.isProjectCommand()) {
+            ProjectName projectName = new ProjectName(argumentString);
+            return new AddCommandLine(null, projectName, null);
+        }
+
+        if (this.addCommandType.isTaskCommand()) {
+            String[] addArgumentSplited = argumentString.split("\\s+");
+            ProjectName projectName = new ProjectName(addArgumentSplited[0]);
+            TaskDescription taskDescription = new TaskDescription(addArgumentSplited[1]);
+            return new AddCommandLine(null, projectName, taskDescription);
+        }
+        return null;
     }
 
-    public boolean isProjectCommand() {
-        return this.addCommandValue.equals("project");
+    public void executeAddCommand(AddCommandLine addCommandArguments, Data data, ReaderWriter readerWriter) {
+        if (this.addCommandType.isProjectCommand()) {
+            addCommandArguments.addProject(data);
+        }
+        if (this.addCommandType.isTaskCommand()) {
+            addCommandArguments.addTask(data);
+        }
     }
 
-    public boolean isTaskCommand() {
-        return this.addCommandValue.equals("task");
-    }
-
-    
 }

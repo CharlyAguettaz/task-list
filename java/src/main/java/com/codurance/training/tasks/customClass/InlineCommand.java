@@ -2,22 +2,23 @@ package com.codurance.training.tasks.customClass;
 
 public class InlineCommand {
     private Command command;
-    
-    _commandRest:CommandRest = None
+    private CommandWrap commandWrap;
 
-    def __init__(self, commandLineStr:str) -> None:
+    public InlineCommand(String commandLineString) {
+        String[] commandLineStringSplited = commandLineString.split("\\s+");
+        String commandString = commandLineStringSplited[0];
+        this.command = new Command(new CommandType(commandString));
 
-        commandLineStr      = commandLineStr.strip()
-        commandLineSplited  = commandLineStr.split(" ", 1)
-        commandStr          = commandLineSplited[0]
-        self._command       = Command(type=CommandType(commandStr=commandStr))
+        if(commandLineStringSplited.length > 1) {
+            this.commandWrap = this.command.createWrap(commandLineStringSplited[1]);
+        }
+    }
 
-        if len(commandLineSplited) > 1:
-            self._commandRest = self._command.createCommandRest(commandRestStr=commandLineSplited[1])
+    public void execute(Data data, ReaderWriter readerWriter) {
+        this.command.execute(commandWrap, data, readerWriter);
+    }
 
-    def execute(self, programDatas:ProgramDatas, console:Console) -> None:
-        self._command.execute(commandRest=self._commandRest, programDatas=programDatas, console=console)
-
-    def loopContinue(self) -> LoopContinue:
-        return self._command.loopContinue()
+    public Loop loopContinue() {
+        return this.command.sentLoop();
+    }
 }

@@ -5,32 +5,34 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-public class TaskListRunnableUtils implements Runnable{
+public class ReaderWriter {
 
     private final BufferedReader bufferedReader;
     private final PrintWriter printWriter;
 
-    public TaskListRunnableUtils() {
+    public ReaderWriter() {
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        this.printWriter = new PrintWriter(System.out);;
+        this.printWriter = new PrintWriter(System.out);
     }
 
-    @Override
-    public void run() {
-        while (true) {
-            this.printWriter.print("> ");
-            this.printWriter.flush();
-            String command;
-            try {
-                command = this.bufferedReader.readLine();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            if (command.equals(QUIT)) {
-                break;
-            }
-            execute(command);
-        }
+    private void write(ReaderWriterOutput readerWriterOutput) {
+        this.printWriter.write(readerWriterOutput.toString());
+        this.printWriter.flush();
+    }
+
+    private void printCommandPrompt() {
+        ReaderWriterOutput commandPromptOut = new ReaderWriterOutput("> ");
+        this.write(commandPromptOut);
+    }
+
+    public void print(ReaderWriterOutput readerWriterOutput) {
+        readerWriterOutput.newLine();
+        this.write(readerWriterOutput);
+    }
+
+    public String inputCommandPrompt() throws IOException {
+        this.printCommandPrompt();
+        return this.bufferedReader.readLine();
     }
 
     // private void execute(String commandLine) {

@@ -13,7 +13,10 @@ public class TaskUnit {
         return this.taskId.toString() + ": " + this.taskDescription.toString();
     }
 
-    private boolean taskExist(TaskId taskId) {
-        return this.taskId == taskId;
+    public TaskExist taskExist(TaskId taskId) {
+        if(this.taskId == taskId) {
+            return new TaskExist(true);
+        }
+        return new TaskExist(false);
     }
 }

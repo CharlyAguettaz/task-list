@@ -7,7 +7,7 @@ public class TaskDone {
         this.taskDoneValue = taskDoneValue;
     }
 
-    public String isTaskDone() {
+    public String toString() {
         if (this.taskDoneValue) {
             return "[X]";
         }

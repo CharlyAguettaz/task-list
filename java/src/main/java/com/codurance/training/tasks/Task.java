@@ -11,19 +11,27 @@ public final class Task {
         this.taskDone = taskDone;
     }
 
-    // public long getId() {
-    //     return id;
-    // }
+    public TaskExist checkIfExist(TaskId taskId, TaskExist taskExist) {
+        TaskDone taskDone = new TaskDone(true);
+        return this.setDoneIfExist(taskId, taskDone, taskExist);
+    }
 
-    // public String getDescription() {
-    //     return description;
-    // }
+    public TaskExist uncheckIfExist(TaskId taskId, TaskExist taskExist) {
+        TaskDone taskDone = new TaskDone(false);
+        return this.setDoneIfExist(taskId, taskDone, taskExist);
+    }
 
-    // public boolean isDone() {
-    //     return this.taskDone;
-    // }
+    private TaskExist setDoneIfExist(TaskId taskId, TaskDone taskDoneNew, TaskExist taskExist) {
 
-    // public void setDone(boolean done) {
-    //     this.done = done;
-    // }
+        if (taskExist == new TaskExist(true)) {
+            return taskExist;
+        }
+
+        taskExist = this.taskUnit.taskExist(taskId);
+        if(taskExist == new TaskExist(true)) {
+            this.taskDone = taskDoneNew;
+        }
+        return taskExist;
+    }
+
 }
