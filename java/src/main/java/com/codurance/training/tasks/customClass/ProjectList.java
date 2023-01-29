@@ -3,6 +3,9 @@ package com.codurance.training.tasks.customClass;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.codurance.training.tasks.appClass.Project;
+import com.codurance.training.tasks.appClass.ReaderWriter;
+
 public class ProjectList {
     private List<Project> projectList;
 
