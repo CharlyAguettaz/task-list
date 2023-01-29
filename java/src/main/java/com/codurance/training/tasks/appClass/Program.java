@@ -1,6 +1,8 @@
-package com.codurance.training.tasks.customClass;
+package com.codurance.training.tasks.appClass;
 
 import java.io.IOException;
+
+import com.codurance.training.tasks.customClass.Loop;
 
 public class Program implements Runnable{
 

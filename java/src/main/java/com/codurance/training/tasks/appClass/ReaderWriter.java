@@ -1,9 +1,11 @@
-package com.codurance.training.tasks.customClass;
+package com.codurance.training.tasks.appClass;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+
+import com.codurance.training.tasks.customClass.ReaderWriterOutput;
 
 public class ReaderWriter {
 

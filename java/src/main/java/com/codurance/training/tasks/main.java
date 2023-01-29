@@ -1,7 +1,7 @@
 package com.codurance.training.tasks;
 
-import com.codurance.training.tasks.customClass.ReaderWriter;
-import com.codurance.training.tasks.customClass.Program;
+import com.codurance.training.tasks.appClass.Program;
+import com.codurance.training.tasks.appClass.ReaderWriter;
 
 public class main {
 
