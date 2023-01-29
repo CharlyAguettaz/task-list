@@ -1,28 +1,29 @@
 package com.codurance.training.tasks;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+import java.io.PrintWriter;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
+import com.codurance.training.tasks.customClass.Program;
+import com.codurance.training.tasks.customClass.ReaderWriter;
+
+import static java.lang.System.lineSeparator;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 public final class ApplicationTest {
+    private Thread applicationThread;
 
-
-    // public static final String PROMPT = "> ";
-    // private final PipedOutputStream inStream = new PipedOutputStream();
-    // private final PrintWriter inWriter = new PrintWriter(inStream, true);
-
-    // private final PipedInputStream outStream = new PipedInputStream();
-    // private final BufferedReader outReader = new BufferedReader(new InputStreamReader(outStream));
-
-    // private Thread applicationThread;
-
-    // public ApplicationTest() {
-
-
-    // }
-
-    // @Before public void
-    // start_the_application() {
-    //     applicationThread.start();
-    // }
+    public ApplicationTest() throws IOException {
+        Program program = new Program(new ReaderWriter());
+        program.run();
+    }
 
     // @After public void
     // kill_the_application() throws IOException, InterruptedException {

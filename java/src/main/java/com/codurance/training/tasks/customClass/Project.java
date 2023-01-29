@@ -22,25 +22,25 @@ public class Project {
     }
 
     public TaskExist checkIfTaskExist(TaskId taskId, TaskExist taskExist) {
-        if( taskExist == new TaskExist(true)) {
+        if( taskExist.equals(new TaskExist(true))) {
             return taskExist;
         }
-        return new TaskExist(false);
+        return this.taskList.checkIfExist(taskId, taskExist);
     }
 
     public TaskExist uncheckIfTaskExist(TaskId taskId, TaskExist taskExist) {
-        if( taskExist == new TaskExist(true)) {
+        if( taskExist.equals(new TaskExist(true))) {
             return taskExist;
         }
         return this.taskList.uncheckIfExist(taskId, taskExist);
     }
 
     public ProjectExist addTaskIfProjectExist(ProjectName projectName, TaskUnit taskUnit, ProjectExist projectExist) {
-        if (projectExist == new ProjectExist(true)) {
+        if (projectExist.equals(new ProjectExist(true))) {
             return projectExist;
         }
 
-        if(this.projectName == projectName) {
+        if(this.projectName.equals(projectName)) {
             Task task = new Task(taskUnit, new TaskDone(false));
             this.taskList.addTask(task);
             return new ProjectExist(true);

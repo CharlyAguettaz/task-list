@@ -20,7 +20,7 @@ public class Data {
         TaskUnit taskUnit = new TaskUnit(taskId, taskDescription);
         ProjectExist projectExist = this.projectList.addTaskIfProjectExist(projectName, taskUnit);
 
-        if (projectExist == new ProjectExist(false)) {
+        if (projectExist.equals(new ProjectExist(false))) {
             readerWriter.print(new ReaderWriterOutput("Specified project does not exist"));
             return;
         }

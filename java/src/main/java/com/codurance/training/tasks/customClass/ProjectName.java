@@ -12,7 +12,7 @@ public class ProjectName {
     }
 
     public boolean equals(ProjectName otherProjectName) {
-        return this.value == otherProjectName.value;
+        return this.value.equals(otherProjectName.value);
     }
 
 

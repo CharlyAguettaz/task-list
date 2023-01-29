@@ -15,7 +15,7 @@ public class Program implements Runnable{
     @Override
     public void run() {
         Loop loop = new Loop(true);
-        while (loop == new Loop(true)) {
+        while (loop.equals(new Loop(true))) {
             String commandString = "";
             try {
                 commandString = this.readerWriter.inputCommandPrompt();

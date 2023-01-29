@@ -7,6 +7,10 @@ public class TaskId {
         this.value = taskId;
     }
 
+    public String toString() {
+        return "" + value + "";
+    }
+
     public boolean equals(TaskId otherTaskId) {
         return this.value == otherTaskId.value;
     }

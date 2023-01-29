@@ -11,6 +11,10 @@ public final class Task {
         this.taskDone = taskDone;
     }
 
+    public String toString() {
+        return this.taskUnit.toString() + " " + this.taskDone.toString();
+    }
+
     public TaskExist checkIfExist(TaskId taskId, TaskExist taskExist) {
         TaskDone taskDone = new TaskDone(true);
         return this.setDoneIfExist(taskId, taskDone, taskExist);
@@ -23,12 +27,12 @@ public final class Task {
 
     private TaskExist setDoneIfExist(TaskId taskId, TaskDone taskDoneNew, TaskExist taskExist) {
 
-        if (taskExist == new TaskExist(true)) {
+        if (taskExist.equals(new TaskExist(true))) {
             return taskExist;
         }
 
         taskExist = this.taskUnit.taskExist(taskId);
-        if(taskExist == new TaskExist(true)) {
+        if(taskExist.equals(new TaskExist(true))) {
             this.taskDone = taskDoneNew;
         }
         return taskExist;

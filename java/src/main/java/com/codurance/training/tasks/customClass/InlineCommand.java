@@ -5,7 +5,7 @@ public class InlineCommand {
     private CommandWrap commandWrap;
 
     public InlineCommand(String commandLineString) {
-        String[] commandLineStringSplited = commandLineString.split("\\s+");
+        String[] commandLineStringSplited = commandLineString.split("\\s+", 2);
         String commandString = commandLineStringSplited[0];
         this.command = new Command(new CommandType(commandString));
 

@@ -10,8 +10,16 @@ public class ProjectList {
         this.projectList = new ArrayList<>();
     }
 
+    public String toString() {
+        String toString = "";
+        for (Project project : projectList) {
+            toString += project.toString() + "\n";
+        }
+        return toString;
+    }
+
     public void checkTask(TaskId taskId, ReaderWriter readerWriter) {
-        TaskExist taskExist = new TaskExist(false);
+        TaskExist taskExist = new TaskExist(true);
         for (Project project : this.projectList) {
             taskExist = project.checkIfTaskExist(taskId, taskExist);
         }
@@ -20,7 +28,7 @@ public class ProjectList {
     }
 
     public void uncheckTask(TaskId taskId, ReaderWriter readerWriter) {
-        TaskExist taskExist = new TaskExist(false);
+        TaskExist taskExist = new TaskExist(true);
         for (Project project : this.projectList) {
             taskExist = project.uncheckIfTaskExist(taskId, taskExist);
         }
@@ -42,7 +50,7 @@ public class ProjectList {
     }
 
     private void handleTaskNonExistant(TaskExist taskExist, ReaderWriter readerWriter) {
-        if (taskExist == new TaskExist(false)) {
+        if (taskExist.equals(new TaskExist(false))) {
             readerWriter.print(new ReaderWriterOutput("Specified task does not exist"));
         }
     }

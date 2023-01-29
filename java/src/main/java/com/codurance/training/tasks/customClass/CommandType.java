@@ -12,7 +12,7 @@ public class CommandType {
     }
 
     public boolean isNotExpectedCommand() {
-        return this.expectedTypes.contains(this.commandValue);
+        return !this.expectedTypes.contains(this.commandValue);
     }
 
     public boolean isShowCommand() {

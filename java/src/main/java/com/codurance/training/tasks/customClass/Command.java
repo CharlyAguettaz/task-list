@@ -9,9 +9,11 @@ public class Command {
 
     public CommandWrap createWrap(String commandWrapString) {
         if (this.commandType.isAddCommand()) {
-            String[] commandWrapStringSplited = commandWrapString.split("\\s+");
+            String[] commandWrapStringSplited = commandWrapString.split("\\s+", 2);
+            String addCommandString = commandWrapStringSplited[0];
             String addCommandArgumentString = commandWrapStringSplited[1];
-            AddCommand addCommand = new AddCommand(new AddCommandType(addCommandArgumentString));
+
+            AddCommand addCommand = new AddCommand(new AddCommandType(addCommandString));
             return new CommandWrap(addCommand, addCommandArgumentString, null);
         }
 

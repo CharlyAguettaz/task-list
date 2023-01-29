@@ -1,29 +1,25 @@
 package com.codurance.training.tasks;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-import com.codurance.training.tasks.customClass.ReaderWriter;
 import com.codurance.training.tasks.customClass.TaskExist;
 import com.codurance.training.tasks.customClass.TaskId;
-import com.codurance.training.tasks.customClass.TaskListUnit;
 
 public final class TaskList {
 
     private List<Task> taskList;
 
-    public static void main(String[] args) throws Exception {
-
-    }
-
     public TaskList() {
         this.taskList = new ArrayList<>();
+    }
+
+    public String toString() {
+        String toString = "";
+        for (Task task : taskList) {
+            toString += task.toString() + "\n";
+        }
+        return toString;
     }
 
     public void addTask(Task task) {

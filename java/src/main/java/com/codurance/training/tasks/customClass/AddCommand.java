@@ -14,7 +14,7 @@ public class AddCommand {
         }
 
         if (this.addCommandType.isTaskCommand()) {
-            String[] addArgumentSplited = argumentString.split("\\s+");
+            String[] addArgumentSplited = argumentString.split("\\s+", 2);
             ProjectName projectName = new ProjectName(addArgumentSplited[0]);
             TaskDescription taskDescription = new TaskDescription(addArgumentSplited[1]);
             return new AddCommandLine(null, projectName, taskDescription);
